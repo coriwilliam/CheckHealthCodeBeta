@@ -8,7 +8,7 @@ class Problema {
 	String testsDeUnidad
 	Date fechaDeCreacion
 	Date ultimaModificacion
-	Static hasMany = [alumnos: Alumno]
+	static hasMany = [alumnos: Alumno]
 
     static constraints = {
     }

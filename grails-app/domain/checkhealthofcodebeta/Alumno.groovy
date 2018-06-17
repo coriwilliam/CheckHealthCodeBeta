@@ -1,4 +1,6 @@
 package checkhealthofcodebeta
+import autenticacion.Usuario;
+
 
 class Alumno extends Usuario {
 
