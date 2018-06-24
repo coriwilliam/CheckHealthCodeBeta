@@ -1,6 +1,7 @@
 package checkhealthofcodebeta
+import org.springframework.security.access.annotation.Secured
 
-
+@Secured("permitAll")
 class ProblemaController {
 
     static scaffold = Problema

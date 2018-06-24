@@ -5,7 +5,7 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class ProblemaService {
 
-  List<CasoTesting> list(Map args) {
+  List<Problema> list(Map args) {
       Problema.list(args)
   }
 
