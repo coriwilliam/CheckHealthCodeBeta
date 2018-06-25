@@ -1,4 +1,4 @@
-package autenticacion
+package authenticacion
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
@@ -7,29 +7,29 @@ import grails.compiler.GrailsCompileStatic
 @GrailsCompileStatic
 @EqualsAndHashCode(includes='username')
 @ToString(includes='username', includeNames=true, includePackage=false)
-class Usuario implements Serializable {
+class User implements Serializable {
 
     private static final long serialVersionUID = 1
 
     String username
     String password
-    String nombre
-    String email
+    String name
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
 
-    Set<Rol> getAuthorities() {
-        (UsuarioRol.findAllByUsuario(this) as List<UsuarioRol>)*.rol as Set<Rol>
+    Set<Role> getAuthorities() {
+        (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
     }
 
     static constraints = {
         password nullable: false, blank: false, password: true
         username nullable: false, blank: false, unique: true
+        name nullable: false, blank: false
     }
 
     static mapping = {
-	    password column: '`password`'
+        password column: '`password`'
     }
 }

@@ -1,10 +1,10 @@
 package checkhealthofcodebeta
-import autenticacion.Usuario;
+import authenticacion.User
 
 
-class Alumno extends Usuario {
+class Alumno extends User {
 
-		static hasMany = [tareas: Tarea]
+    static hasMany = [tareas: Tarea]
 
     static constraints = {
     }

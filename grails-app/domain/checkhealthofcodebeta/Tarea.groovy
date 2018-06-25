@@ -6,6 +6,6 @@ class Tarea {
 	Resolucion resolucion
 	static hasMany = [comentarios: Comentario]
 
-  static constraints = {
-  }
+	static constraints = {
+	}
 }

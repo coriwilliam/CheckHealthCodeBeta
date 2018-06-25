@@ -1,8 +1,34 @@
 package checkhealthofcodebeta
 
+import authenticacion.Role
+import authenticacion.User
+import authenticacion.UserRole
+import grails.compiler.GrailsCompileStatic
+
+@GrailsCompileStatic
 class BootStrap {
 
     def init = { servletContext ->
+
+      def roles = ['ROLE_ADMIN', 'ROLE_USER']
+
+      roles.each {
+         if ( !Role.findByAuthority(it) ) {
+            new Role(authority: it).save()
+         }
+      }
+
+      if ( !User.findByUsername('alexander') ) {
+         def new_user = new User(
+                 username: 'alexander',
+                 password: 'ajt-1234',
+                 name: 'alexander'
+         )
+         new_user.save()
+         def user_role = new UserRole(user: new_user, role:  Role.findByAuthority('ROLE_USER'))
+          user_role.save()
+      }
+
 
       def profesor = new Profesor(nombre:"Alexander").save()
       //A fines practicos, se va a harcodear el nombre de la clase a implementar

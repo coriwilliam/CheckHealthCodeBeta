@@ -1,4 +1,4 @@
-package autenticacion
+package authenticacion
 
 import grails.plugin.springsecurity.SpringSecurityService
 import org.grails.datastore.mapping.core.Datastore
@@ -12,19 +12,19 @@ import org.springframework.context.ApplicationEvent
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class UsuarioPasswordEncoderListener extends AbstractPersistenceEventListener {
+class UserPasswordEncoderListener extends AbstractPersistenceEventListener {
 
     @Autowired
     SpringSecurityService springSecurityService
 
-    UsuarioPasswordEncoderListener(final Datastore datastore) {
+    UserPasswordEncoderListener(final Datastore datastore) {
         super(datastore)
     }
 
     @Override
     protected void onPersistenceEvent(AbstractPersistenceEvent event) {
-        if (event.entityObject instanceof Usuario) {
-            Usuario u = (event.entityObject as Usuario)
+        if (event.entityObject instanceof User) {
+            User u = (event.entityObject as User)
             if (u.password && (event.eventType == EventType.PreInsert || (event.eventType == EventType.PreUpdate && u.isDirty('password')))) {
                 event.getEntityAccess().setProperty("password", encodePassword(u.password))
             }

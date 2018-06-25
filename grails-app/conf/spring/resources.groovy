@@ -1,5 +1,5 @@
-import autenticacion.UsuarioPasswordEncoderListener
+import authenticacion.UserPasswordEncoderListener
 // Place your Spring DSL code here
 beans = {
-    usuarioPasswordEncoderListener(UsuarioPasswordEncoderListener, ref('hibernateDatastore'))
+    userPasswordEncoderListener(UserPasswordEncoderListener, ref('hibernateDatastore'))
 }

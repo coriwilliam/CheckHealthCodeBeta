@@ -9,7 +9,7 @@ class Resolucion {
     }
 
     static constraints = {
-      codigo blank: true, nullable:false
-      nombreEntidad blank: false, nullable:false
+        codigo blank: true, nullable:false
+        nombreEntidad blank: false, nullable:false
     }
 }
