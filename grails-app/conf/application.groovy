@@ -4,6 +4,7 @@
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'authenticacion.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'authentication.UserRole'
 grails.plugin.springsecurity.authority.className = 'authentication.Role'
+grails.plugin.springsecurity.logout.postOnly=false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],

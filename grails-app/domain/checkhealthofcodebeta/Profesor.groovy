@@ -1,7 +1,8 @@
 package checkhealthofcodebeta
 
-class Profesor {
-    String nombre
+import authenticacion.User
+
+class Profesor extends User {
     static hasMany = [problemas: Problema]
     static constraints = {
     }

@@ -19,18 +19,18 @@ class BootStrap {
       }
 
       if ( !User.findByUsername('alexander') ) {
-         def new_user = new User(
+         def new_profesor = new Profesor(
                  username: 'alexander',
                  password: 'ajt-1234',
                  name: 'alexander'
          )
-         new_user.save()
-         def user_role = new UserRole(user: new_user, role:  Role.findByAuthority('ROLE_USER'))
+         new_profesor.save()
+         def user_role = new UserRole(user: new_profesor, role:  Role.findByAuthority('ROLE_USER'))
           user_role.save()
       }
 
 
-      def profesor = new Profesor(nombre:"Alexander").save()
+      def profesor = Profesor.findByUsername('alexander')
       //A fines practicos, se va a harcodear el nombre de la clase a implementar
       def nombreClase = "Pila"
       def problema = new Problema(
