@@ -6,19 +6,6 @@
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-       <pre id="editor" style="height:500px; width: inherit;">
-public class FactorialMath {
-    static int run(int num){
-        if (num < 2)
-            return 1
-        def factorial = (1..num).inject {result, i ->
-            result *= i
-            result
-        }
-        factorial
-    }
-}
-        </pre>
         <a href="#edit-problema" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
@@ -42,24 +29,65 @@ public class FactorialMath {
             <g:form resource="${this.problema}" method="PUT">
                 <g:hiddenField name="version" value="${this.problema?.version}" />
                 <fieldset class="form">
-                    <f:all bean="problema"/>
+                    <f:all bean="problema" except="interfazAtestear,testsDeUnidad"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </fieldset>
             </g:form>
+
+            <div class="fieldcontain required" style="display: none;">
+                <label for="interfazAtestear">Interfaz a implementar</label> <br/>
+                <g:textArea name="interfazAtestear" id="interfazAtestear"
+                            placeholder="" form="problemaForm">
+
+                </g:textArea>
+            </div>
+
+            <div class="fieldcontain required" style="display: none;">
+                <label for="testsDeUnidad">Interfaz a implementar</label> <br/>
+                <g:textArea name="testsDeUnidad" id="testsDeUnidad"
+                            placeholder="" form="problemaForm">
+                </g:textArea>
+            </div>
+
+            <h3>Definicion de Interfaz</h3>
+            <pre id="editorInterfaz" class="interfaz" style="height:400px; width: inherit;">
+                ${this.problema.interfazAtestear}
+            </pre>
+
+            <h3>Tests de Unidad que deberan ejecutar correctamente</h3>
+            <pre id="editorTestsUnidad" class="testsUnidad" style="height:400px; width: inherit;">
+                ${this.problema.testsDeUnidad}
+            </pre>
         </div>
         <asset:javascript src="Ace/src-noconflict/ace.js"/>
+        <asset:javascript src="Ace/src-noconflict/ext-language_tools.js"/>
+
         <script>
-            var editor = ace.edit("editor");
-            editor.session.setMode("ace/mode/groovy");
-            editor.setTheme("ace/theme/chrome");
+            //Para acceder al text en edicion es -> $("#editorTestsUnidad")[0].innerText
+            var editorInterfaz = ace.edit("editorInterfaz");
+            editorInterfaz.session.setMode("ace/mode/groovy");
+            editorInterfaz.setTheme("ace/theme/chrome");
 
             // enable autocompletion and snippets
-            editor.setOptions({
+            editorInterfaz.setOptions({
                 enableBasicAutocompletion: true,
                 enableSnippets: true,
-                enableLiveAutocompletion: true,
+                enableLiveAutocompletion: true
+            });
+            editorInterfaz.setAutoScrollEditorIntoView(true);
+
+
+            var editorTestsUnidad = ace.edit("editorTestsUnidad");
+            editorTestsUnidad.session.setMode("ace/mode/groovy");
+            editorTestsUnidad.setTheme("ace/theme/chrome");
+
+            // enable autocompletion and snippets
+            editorTestsUnidad.setOptions({
+                enableBasicAutocompletion: true,
+                enableSnippets: true,
+                enableLiveAutocompletion: true
             });
             //        editor.setReadOnly(true);
         </script>
